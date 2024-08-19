@@ -1,26 +1,31 @@
-# Use official PHP image as base
-FROM php:8.2-fpm
+# Use PHP 8.3 with Alpine Linux
+FROM php:8.3-alpine
 
-# Install dependencies
-RUN apt-get update && apt-get install -y \
+# Install necessary packages and PHP extensions
+RUN apk update && apk add --no-cache \
+    libpng libpng-dev \
+    libjpeg-turbo libjpeg-turbo-dev \
+    libwebp libwebp-dev \
+    zlib zlib-dev \
     git \
     unzip \
-    libpq-dev \
-    libzip-dev \
-    && docker-php-ext-install pdo pdo_mysql zip
+    bash \
+    && docker-php-ext-install pdo pdo_mysql gd
 
 # Install Composer
-COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
-# Set working directory
-WORKDIR /var/www
+# Set the working directory
+WORKDIR /var/www/html
 
-# Copy the application files
+# Copy project files into the container
 COPY . .
 
-# Install dependencies
+# Install PHP dependencies
 RUN composer install
 
-# Expose port 9000 and start PHP-FPM server
-EXPOSE 9000
-CMD ["php-fpm"]
+# Expose port 80
+EXPOSE 80
+
+# Start the PHP built-in server
+CMD ["php", "-S", "0.0.0.0:80", "-t", "public"]
