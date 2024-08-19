@@ -15,7 +15,7 @@
 Run following command to create the database
     
     ```bash
-   docker exec -it ecom-media-db mysql -u root -prootpasswd -e "CREATE DATABASE ecom_web;"
+   docker exec -it ecom-db mysql -u root -prootpasswd -e "CREATE DATABASE ecom_media_backend;CREATE DATABASE media_ecom"
    
 4. **Access the API Container**:
 Execute the following command to enter the ecom-media-player-api container:
