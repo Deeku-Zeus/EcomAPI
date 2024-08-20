@@ -11,16 +11,21 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('users', function (Blueprint $table) {
-                $table->id();
-                $table->string('first_name');
-                $table->string('last_name');
-                $table->string('username')->unique();
-                $table->string('email')->unique()->nullable();
-                $table->string('password');
-                $table->string('phone_number')->nullable()->index('phone_number');
-                $table->rememberToken();
-                $table->timestamps();
+        Schema::connection('ecomBackend')->create('users', function (Blueprint $table) {
+            $table->id();
+            $table->string('first_name');
+            $table->string('last_name');
+            $table->string('username')->unique();
+            $table->string('email')->unique()->nullable();
+            $table->string('password');
+            $table->string('phone_number')->nullable()->index('phone_number');
+            $table->timestamps();
+        });
+        Schema::connection('ecomBackend')->create('user_profiles', function (Blueprint $table) {
+            $table->id();
+            $table->unsignedBigInteger('user_id')->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->string('profile_name');
+            $table->timestamps();
         });
     }
 
@@ -29,8 +34,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('users');
-        Schema::dropIfExists('password_reset_tokens');
-        Schema::dropIfExists('sessions');
+        Schema::connection('ecomBackend')->dropIfExists('users');
+        Schema::connection('ecomBackend')->dropIfExists('user_profiles');
     }
 };

@@ -20,7 +20,7 @@ Run following command to create the database
 4. **Access the API Container**:
 Execute the following command to enter the ecom-media-player-api container:
     ```bash
-   docker exec -it ecom-web bash
+   docker exec -it ecomapi bash
    composer install
    composer update
    
@@ -28,7 +28,7 @@ Execute the following command to enter the ecom-media-player-api container:
 Run this command inside the container to migrate the database files:
 
     ```bash
-    php artisan migrate
+    php artisan migrate --database=ecomBackend
 
 6. **Seed the Database**:
 To seed the database entries, run the following command:
