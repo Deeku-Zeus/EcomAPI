@@ -18,6 +18,11 @@
          */
         protected $fillable = [
             'requestId',
+            'is_classified',
+            'coordinates',
+            'object',
+            'confidence',
+            'uid',
             'responseData'
         ];
 
