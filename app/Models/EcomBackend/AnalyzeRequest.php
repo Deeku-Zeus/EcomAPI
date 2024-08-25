@@ -1,18 +1,13 @@
 <?php
+
 namespace App\Models\EcomBackend;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class UserProfile extends Model
+class AnalyzeRequest extends Model
 {
     use HasFactory;
-
-    /**
-     * Database connection
-     *
-     * @var string
-     */
     protected $connection = 'ecomBackend';
 
     /**
@@ -21,22 +16,19 @@ class UserProfile extends Model
      * @var array<int, string>
      */
     protected $fillable = [
-        'user_id',
-        'profile_name',
+        'profileId',
+        'image',
+        'videoName',
+        'timestamp',
+        'request_token',
+        'is_analyzed',
+        'responseTime'
     ];
-
     /**
      * Get the user that owns the profile.
      */
-    public function user()
+    public function analyzeResoinse()
     {
-        return $this->belongsTo(User::class);
-    }
-    /**
-     * Get the analyze requests associated with the user.
-     */
-    public function analyzeRequest()
-    {
-        return $this->hasMany(AnalyzeRequest::class);
+        return $this->hasMany(AnalyzeResponse::class);
     }
 }

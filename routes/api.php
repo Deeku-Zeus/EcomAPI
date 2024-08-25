@@ -2,7 +2,10 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use \App\Http\Controllers\AuthController;
+use \App\Http\Controllers\Api\EcomBackend\ImageAnalyzerController;
 
-Route::get('/user', function (Request $request) {
-    return $request->user();
-})->middleware('auth:sanctum');
+Route::get('/v1/getToken', [AuthController::class,'getAuthToken']);
+Route::middleware('auth.jwt')->group(function() {
+    Route::post('/v1/ecomBackend/put/analyzerRequest',[ImageAnalyzerController::class,'storeImageAnalyzer']);
+});

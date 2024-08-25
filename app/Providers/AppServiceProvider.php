@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Auth\Providers\JwtAuthUserProvider;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -20,5 +22,6 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         //
+        Auth::provider('api-jwt', fn($app, array $config) => new JwtAuthUserProvider());
     }
 }

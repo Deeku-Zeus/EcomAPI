@@ -19,5 +19,4 @@ yarn-error.log
 /.idea
 /.vscode
 .DS_Store
-app/Dao/.*
 database/.*

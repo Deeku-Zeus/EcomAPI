@@ -24,7 +24,7 @@ return new class extends Migration
         Schema::connection('ecomBackend')->create('user_profiles', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id')->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->string('profile_name');
+            $table->string('profile_name')->index('profile_name');
             $table->timestamps();
         });
     }
