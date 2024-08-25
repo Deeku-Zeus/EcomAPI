@@ -17,7 +17,7 @@
          * @var array<int, string>
          */
         protected $fillable = [
-            'requestId',
+            'analyze_request_id',
             'is_classified',
             'coordinates',
             'object',

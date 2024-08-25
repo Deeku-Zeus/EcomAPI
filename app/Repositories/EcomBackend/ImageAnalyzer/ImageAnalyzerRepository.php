@@ -1,31 +1,43 @@
 <?php
 
-namespace App\Repositories\EcomBackend\ImageAnalyzer;
+    namespace App\Repositories\EcomBackend\ImageAnalyzer;
 
-use App\Services\EcomBackend\ImageAnalyzer\ImageAnalyzerService;
+    use App\Services\EcomBackend\ImageAnalyzer\ImageAnalyzerService;
 
-class ImageAnalyzerRepository implements ImageAnalyzerRepositoryInterface
-{
-    /**
-     * @var ImageAnalyzerService
-     */
-    protected ImageAnalyzerService $imageAnalyzerService;
-
-    /**
-     * ImageAnalyzerRequestExecRepository constructor.
-     * @param ImageAnalyzerService $analyzerService
-     */
-    public function __construct(ImageAnalyzerService $analyzerService)
+    class ImageAnalyzerRepository implements ImageAnalyzerRepositoryInterface
     {
-        $this->imageAnalyzerService = $analyzerService;
-    }
+        /**
+         * @var ImageAnalyzerService
+         */
+        protected ImageAnalyzerService $imageAnalyzerService;
 
-    /**
-     * @param array $request
-     * @return array
-     */
-    public function storeAnalyzeRequest(array $request): array
-    {
-        return $this->imageAnalyzerService->storeAnalyzeRequest($request);
+        /**
+         * ImageAnalyzerRequestExecRepository constructor.
+         *
+         * @param ImageAnalyzerService $analyzerService
+         */
+        public function __construct(ImageAnalyzerService $analyzerService)
+        {
+            $this->imageAnalyzerService = $analyzerService;
+        }
+
+        /**
+         * @param array $request
+         *
+         * @return array
+         */
+        public function storeAnalyzeRequest(array $request): array
+        {
+            return $this->imageAnalyzerService->storeAnalyzeRequest($request);
+        }
+
+        /**
+         * @param array $request
+         *
+         * @return array
+         */
+        public function analyzedResponse(array $request): array
+        {
+            return $this->imageAnalyzerService->analyzedResponse($request);
+        }
     }
-}

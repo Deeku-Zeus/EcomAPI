@@ -28,15 +28,15 @@ class UserProfile extends Model
     /**
      * Get the user that owns the profile.
      */
-    public function user()
+    public function user(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
         return $this->belongsTo(User::class);
     }
     /**
      * Get the analyze requests associated with the user.
      */
-    public function analyzeRequest()
+    public function analyzeRequest(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
-        return $this->hasMany(AnalyzeRequest::class);
+        return $this->hasMany(AnalyzeRequest::class,'requestId');
     }
 }

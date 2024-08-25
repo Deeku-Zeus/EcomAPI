@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::connection('ecomBackend')->create('analyze_responses', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('requestId')->foreign('requestId')->references('id')->on('analyze_requests')->onDelete('cascade');
+            $table->unsignedBigInteger('analyze_request_id')->foreign('requestId')->references('id')->on('analyze_requests')->onDelete('cascade');
             $table->boolean('is_classified')->default(false)->nullable(false)->index('is_classified');
             $table->string('coordinates')->nullable(false);
             $table->string('confidence')->nullable();

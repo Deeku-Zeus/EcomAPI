@@ -16,7 +16,7 @@ class AnalyzeRequest extends Model
      * @var array<int, string>
      */
     protected $fillable = [
-        'profileId',
+        'profile_id',
         'image',
         'videoName',
         'timestamp',
@@ -25,10 +25,17 @@ class AnalyzeRequest extends Model
         'responseTime'
     ];
     /**
-     * Get the user that owns the profile.
+     * Get the responses.
      */
-    public function analyzeResoinse()
+    public function analyzeResponse(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
         return $this->hasMany(AnalyzeResponse::class);
+    }
+    /**
+     * Get the user that owns the profile.
+     */
+    public function profile(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    {
+        return $this->belongsTo(UserProfile::class,'requestId');
     }
 }

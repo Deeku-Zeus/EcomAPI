@@ -13,7 +13,7 @@
         {
             Schema::connection('ecomBackend')->create('analyze_requests', function (Blueprint $table) {
                 $table->id();
-                $table->unsignedBigInteger('profileId')->foreign('profileId')->references('id')->on('user_profiles')->onDelete('cascade');
+                $table->unsignedBigInteger('user_profile_id')->foreign('user_profile_id')->references('id')->on('user_profiles')->onDelete('cascade');
                 $table->string('image')->nullable(false);
                 $table->string('timestamp');
                 $table->string('videoName');

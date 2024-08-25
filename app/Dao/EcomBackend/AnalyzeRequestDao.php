@@ -25,8 +25,10 @@
          * Upsert the request data to database
          *
          * @param $upsertData
+         *
+         * @return mixed
          */
-        public function storeAnalyzeRequest($upsertData)
+        public function storeAnalyzeRequest($upsertData): mixed
         {
             return $this->analyzeRequest->updateOrCreate(
                 [
@@ -34,5 +36,17 @@
                 ],
                 $upsertData
             );
+        }
+
+        /**
+         * Get analyzed responses
+         *
+         * @param $requestToken
+         *
+         * @return mixed
+         */
+        public function analyzedResponse($requestToken): mixed
+        {
+            return $this->analyzeRequest->where('request_token',$requestToken)->first();
         }
     }
