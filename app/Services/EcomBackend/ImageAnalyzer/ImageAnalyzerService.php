@@ -59,7 +59,7 @@
                 }
                 if ($result) {
                     $upsertData = [
-                        "profileId"     => $profileid,
+                        "user_profile_id"     => $profileid,
                         "image"         => $request->get('image', null),
                         "videoName"     => $request->get('videoName', null),
                         "timestamp"     => $request->get('timestamp', null),

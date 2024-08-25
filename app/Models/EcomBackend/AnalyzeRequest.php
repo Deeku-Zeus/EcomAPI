@@ -16,7 +16,7 @@ class AnalyzeRequest extends Model
      * @var array<int, string>
      */
     protected $fillable = [
-        'profile_id',
+        'user_profile_id',
         'image',
         'videoName',
         'timestamp',
