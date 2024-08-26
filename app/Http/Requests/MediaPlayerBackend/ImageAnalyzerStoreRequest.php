@@ -26,8 +26,8 @@
         {
             return [
                 'image'         => 'required|string',
-                'videoName'     => 'required|string|max:255',
-                'timestamp'     => 'required',
+                'videoName'     => 'nullable|string|max:255',
+                'timestamp'     => 'nullable',
                 'username'      => 'required|string|max:255',
                 'profile_name'  => 'required|string|max:255',
                 'request_token' => 'required|string',
