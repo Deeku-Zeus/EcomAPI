@@ -11,8 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('colors', function (Blueprint $table) {
+        Schema::connection('mediaEcom')->create('colors', function (Blueprint $table) {
             $table->id();
+            $table->string('color')->nullable(false);
+            $table->string('code')->nullable(false);
             $table->timestamps();
         });
     }
@@ -22,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('colors');
+        Schema::connection('mediaEcom')->dropIfExists('colors');
     }
 };

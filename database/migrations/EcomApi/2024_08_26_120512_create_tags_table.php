@@ -11,8 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('tags', function (Blueprint $table) {
+        Schema::connection('mediaEcom')->create('tags', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('category_id')->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
+            $table->string('tag_name')->nullable(false);
             $table->timestamps();
         });
     }
@@ -22,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('tags');
+        Schema::connection('mediaEcom')->dropIfExists('tags');
     }
 };

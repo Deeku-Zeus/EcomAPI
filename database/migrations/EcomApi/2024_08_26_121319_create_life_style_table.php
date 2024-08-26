@@ -11,8 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('life_style', function (Blueprint $table) {
+        Schema::connection('mediaEcom')->create('life_style', function (Blueprint $table) {
             $table->id();
+            $table->string('lifestyle')->nullable(false);
             $table->timestamps();
         });
     }
@@ -22,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('life_style');
+        Schema::connection('mediaEcom')->dropIfExists('life_style');
     }
 };

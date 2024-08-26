@@ -12,6 +12,7 @@ RUN apk update && apk add --no-cache \
     git \
     unzip \
     bash \
+    mysql-client \
     && docker-php-ext-install pdo pdo_mysql gd
 
 # Enable Apache mod_rewrite
@@ -32,7 +33,9 @@ RUN rm -f /usr/local/etc/php/php.ini-development \
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
 # Copy custom php.ini configuration
-COPY php.ini /usr/local/etc/php/conf.d/
+COPY setup/php.ini /usr/local/etc/php/conf.d/
+COPY setup/entrypoint.sh /usr/local/bin/entrypoint.sh
+RUN chmod +x /usr/local/bin/entrypoint.sh
 
 # Set the working directory
 WORKDIR /var/www/html
@@ -47,4 +50,4 @@ RUN composer install --no-dev --optimize-autoloader
 EXPOSE 80
 
 # Start Apache server
-CMD ["php", "-S", "0.0.0.0:80", "-t", "public"]
+ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
