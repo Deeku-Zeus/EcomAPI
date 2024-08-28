@@ -10,7 +10,8 @@ composer install --no-interaction --prefer-dist --optimize-autoloader
 # Update Composer dependencies (if needed)
 composer update --no-interaction --prefer-dist --optimize-autoloader
 
-mysql -h ecom-db -u root -prootpasswd -e "CREATE DATABASE ecom_media_backend;CREATE DATABASE ecom_media"
+mysql -h ecom-db -u root -prootpasswd -e "CREATE DATABASE ecom_media_backend;"
+mysql -h ecom-db -u root -prootpasswd -e "CREATE DATABASE ecom_media;"
 
 # Run database migrations
 php artisan migrate --force

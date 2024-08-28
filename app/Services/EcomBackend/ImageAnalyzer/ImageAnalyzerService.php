@@ -110,11 +110,11 @@
             }
             try {
                 $analyzeRequest = $this->analyzerRequestDao->getRequestIds($requestToken);
-                if (!$analyzeRequest[0]){
+                if (!(isset($analyzeRequest[0]) && !empty($analyzeRequest[0]))){
                     $result = false;
                     $response['result'] = $result;
                     $response['status'] = "failed";
-                    $response['message'] = "Request token is not provided";
+                    $response['message'] = "Analysis response not found";
                 }
                 if ($result){
                     $analyzedData = $this->analyzedResponseDao->analyzedResponse($analyzeRequest[0],$uid);
