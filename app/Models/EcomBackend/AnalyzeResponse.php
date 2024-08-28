@@ -18,12 +18,11 @@
          */
         protected $fillable = [
             'analyze_request_id',
-            'is_classified',
             'coordinates',
-            'object',
             'confidence',
+            'tags',
             'uid',
-            'responseData'
+            'color'
         ];
 
         /**

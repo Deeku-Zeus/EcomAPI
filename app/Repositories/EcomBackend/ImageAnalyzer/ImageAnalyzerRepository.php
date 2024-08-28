@@ -40,4 +40,14 @@
         {
             return $this->imageAnalyzerService->analyzedResponse($request);
         }
+
+        /**
+         * @param array $request
+         *
+         * @return array
+         */
+        public function StoreAnalyzedResponse(array $request): array
+        {
+            return $this->imageAnalyzerService->StoreAnalyzedResponse($request);
+        }
     }

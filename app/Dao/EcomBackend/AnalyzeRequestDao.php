@@ -3,6 +3,7 @@
     namespace App\Dao\EcomBackend;
 
     use App\Models\EcomBackend\AnalyzeRequest;
+    use App\Models\EcomBackend\AnalyzeResponse;
 
     class AnalyzeRequestDao
     {
@@ -10,15 +11,20 @@
          * @var \App\Models\EcomBackend\AnalyzeRequest
          */
         protected AnalyzeRequest $analyzeRequest;
+        protected AnalyzeResponse $analyzedResponse;
 
         /**
          * AnalyzeRequestDao constructor.
          *
          * @param \App\Models\EcomBackend\AnalyzeRequest $analyzeRequestObj
          */
-        public function __construct(AnalyzeRequest $analyzeRequestObj)
+        public function __construct(
+            AnalyzeRequest $analyzeRequestObj,
+            AnalyzeResponse $analyzedResponseObj
+        )
         {
             $this->analyzeRequest = $analyzeRequestObj;
+            $this->analyzedResponse = $analyzedResponseObj;
         }
 
         /**
@@ -41,12 +47,41 @@
         /**
          * Get analyzed responses
          *
+         * @param string $requestToken
+         *
+         * @param array  $uid
+         *
+         * @return mixed
+         */
+        public function getRequestIds(string $requestToken): mixed
+        {
+            return $this->analyzeRequest->where('request_token',$requestToken)->pluck('id');
+        }
+
+        /**
+         * Get analyzed responses
+         *
          * @param $requestToken
          *
          * @return mixed
          */
-        public function analyzedResponse($requestToken): mixed
+        public function getAnalyzeRequestId($requestToken): mixed
         {
-            return $this->analyzeRequest->where('request_token',$requestToken)->first();
+            return $this->analyzeRequest->where('request_token',$requestToken)->get()->pluck('id')->first();
+        }
+
+        /**
+         * @param $upsertData
+         *
+         * @return mixed
+         */
+        public function upsertAnalyzedResponse($upsertData){
+            return $this->analyzedResponse->UpdateOrCreate(
+                [
+                    'analyze_request_id' => $upsertData['analyze_request_id'],
+                    'uid'=> $upsertData['uid']
+                ],
+                $upsertData
+            );
         }
     }

@@ -5,7 +5,9 @@
     use App\Http\Controllers\Controller;
     use App\Http\Requests\MediaPlayerBackend\GetDetectionResponseRequest;
     use App\Http\Requests\MediaPlayerBackend\ImageAnalyzerStoreRequest;
+    use App\Http\Requests\MediaPlayerBackend\StoreDetectionResponseRequest;
     use App\Repositories\EcomBackend\ImageAnalyzer\ImageAnalyzerRepositoryInterface;
+    use http\Env\Request;
     use Illuminate\Http\JsonResponse;
 
     class ImageAnalyzerController extends Controller
@@ -44,6 +46,21 @@
         public function analyzedResponse(GetDetectionResponseRequest $request): JsonResponse
         {
             $data = $this->imageAnalyzer->analyzedResponse($request->toArray());
+            return response()->json(
+                $data,
+                empty($data) ? 204 : 200
+            );
+        }
+
+        /**
+         *
+         * @param \App\Http\Requests\MediaPlayerBackend\StoreDetectionResponseRequest $request
+         *
+         * @return \Illuminate\Http\JsonResponse
+         */
+        public function StoreAnalyzedResponse(StoreDetectionResponseRequest $request): JsonResponse
+        {
+            $data = $this->imageAnalyzer->StoreAnalyzedResponse($request->toArray());
             return response()->json(
                 $data,
                 empty($data) ? 204 : 200

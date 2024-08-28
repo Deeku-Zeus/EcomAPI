@@ -3,7 +3,10 @@
     namespace App\Services\EcomBackend\ImageAnalyzer;
 
     use App\Dao\EcomBackend\AnalyzeRequestDao;
+    use App\Dao\EcomBackend\AnalyzeResponseDao;
     use App\Dao\EcomBackend\UserProfileDao;
+    use App\Services\CommonCrypt;
+    use Illuminate\Support\Facades\Crypt;
     use Illuminate\Support\Facades\Log;
     use Throwable;
 
@@ -17,20 +20,24 @@
          * @var \App\Dao\EcomBackend\AnalyzeRequestDao
          */
         protected AnalyzeRequestDao $analyzerRequestDao;
+        protected AnalyzeResponseDao $analyzedResponseDao;
 
         /**
          * ImageAnalyzerService constructor.E
          *
-         * @param \App\Dao\EcomBackend\UserProfileDao    $UserProfileDao
-         * @param \App\Dao\EcomBackend\AnalyzeRequestDao $AnalyzeRequestDao
+         * @param \App\Dao\EcomBackend\UserProfileDao     $UserProfileDao
+         * @param \App\Dao\EcomBackend\AnalyzeRequestDao  $AnalyzeRequestDao
+         * @param \App\Dao\EcomBackend\AnalyzeResponseDao $AnalyzeResponseDao
          */
         public function __construct(
             UserProfileDao $UserProfileDao,
-            AnalyzeRequestDao $AnalyzeRequestDao
+            AnalyzeRequestDao $AnalyzeRequestDao,
+            AnalyzeResponseDao $AnalyzeResponseDao
         )
         {
             $this->userProfileDao = $UserProfileDao;
             $this->analyzerRequestDao = $AnalyzeRequestDao;
+            $this->analyzedResponseDao = $AnalyzeResponseDao;
         }
 
         /**
@@ -89,11 +96,12 @@
             $response = [
                 "result"  => $result,
                 "status"  => "success",
-                "message" => "Request saved successfully",
+                "message" => "No response found",
                 "data"    => []
             ];
             $request = collect($request);
             $requestToken = $request->get('request_token');
+            $uid = $request->get('uid',[]);
             if (!$requestToken) {
                 $result = false;
                 $response['result'] = $result;
@@ -101,31 +109,78 @@
                 $response['message'] = "Request token is not provided";
             }
             try {
-                $analyzedData = $this->analyzerRequestDao->analyzedResponse($requestToken);
-                $responseData = collect();
-                $data = [];
-                foreach ($analyzedData->analyzeResponse as $analyzeResponse){
-                    $analyzedObj = collect();
-                    $analyzedObj->put('is_classified',$analyzeResponse->is_classified);
-                    $analyzedObj->put('coordinates',$analyzeResponse->coordinates);
-                    $analyzedObj->put('confidence',$analyzeResponse->confidence);
-                    $analyzedObj->put('object',$analyzeResponse->object);
-                    $analyzedObj->put('uid',$analyzeResponse->uid);
-                    $data[] = $analyzedObj;
+                $analyzeRequest = $this->analyzerRequestDao->getRequestIds($requestToken);
+                if (!$analyzeRequest[0]){
+                    $result = false;
+                    $response['result'] = $result;
+                    $response['status'] = "failed";
+                    $response['message'] = "Request token is not provided";
                 }
-                $responseData->put('is_analyzed',$analyzedData->is_analyzed);
-                $responseData->put('timestamp',$analyzedData->timestamp);
-                $responseData->put('videoName',$analyzedData->videoName);
-                $responseData->put('request_token',$analyzedData->request_token);
-                $responseData->put('timestamp',$analyzedData->timestamp);
-                $responseData->put('analyzed_response',$data);
-                $response['data'] = $responseData->toArray();
+                if ($result){
+                    $analyzedData = $this->analyzedResponseDao->analyzedResponse($analyzeRequest[0],$uid);
+                    if ($analyzedData->isNotEmpty()){
+                        $common = new CommonCrypt(env('COMMON_CRYP_KEY'));
+                        $responseData = collect();
+                        $data = [];
+                        foreach ($analyzedData as $analyzeResponse){
+                            $analyzedObj = collect();
+                            $analyzedObj->put('coordinates',json_decode(base64_decode($common->decrypt($analyzeResponse->coordinates))));
+                            $analyzedObj->put('confidence',$analyzeResponse->confidence);
+                            $analyzedObj->put('tags',json_decode(base64_decode($common->decrypt($analyzeResponse->tags))));
+                            $analyzedObj->put('uid',$analyzeResponse->uid);
+                            $analyzedObj->put('color',$analyzeResponse->color);
+                            $data[] = $analyzedObj;
+                        }
+                        $responseData->put('analyzed_response',$data);
+                        $response['message'] = "Analze response fetched successfully";
+                        $response['data'] = $responseData->toArray();
+                    }
+                }
             } catch (Throwable $th) {
                 Log::error($th);
                 $result = false;
                 $response['result'] = $result;
                 $response['status'] = "failed";
                 $response['message'] = "Some error has occurred during fetching the data";
+            }
+            return $response;
+        }
+
+        /**
+         * @param $request
+         *
+         * @throws \Exception
+         */
+        public function StoreAnalyzedResponse($request)
+        {
+            $result = true;
+            $response = [
+                "result"  => $result,
+                "status"  => "success",
+                "message" => "Request saved successfully",
+                "data"    => []
+            ];
+            foreach ($request as $item) {
+                $item = collect($item);
+                $requestToken = $item->get('request_token');
+                if (!$requestToken) {
+                    $result = false;
+                    $response['result'] = $result;
+                    $response['status'] = "failed";
+                    $response['message'] = "Request token is not provided";
+                }
+                $analyzeRequestId = $this->analyzerRequestDao->getAnalyzeRequestId($requestToken);
+                if ($analyzeRequestId){
+                    $common = new CommonCrypt(env('COMMON_CRYP_KEY'));
+                    $upsertData = collect();
+                    $upsertData->put('coordinates',$common->encrypt($item->get('coordinates')));
+                    $upsertData->put('confidence',$item->get('confidence'));
+                    $upsertData->put('uid',$item->get('uid'));
+                    $upsertData->put('color',$item->get('color'));
+                    $upsertData->put('tags',$common->encrypt($item->get('tags')));
+                    $upsertData->put('analyze_request_id',$analyzeRequestId);
+                    $this->analyzerRequestDao->upsertAnalyzedResponse($upsertData->toArray());
+                }
             }
             return $response;
         }
