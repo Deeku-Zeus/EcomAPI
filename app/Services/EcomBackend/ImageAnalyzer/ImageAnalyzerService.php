@@ -394,7 +394,7 @@
             return [
                 "result"  => true,
                 "status"  => "success",
-                "message" => "Category is not provided",
+                "message" => "Products fetched successfully!",
                 "data"    => $limitedResults->values()->all()
             ];
         }
