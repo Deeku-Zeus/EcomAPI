@@ -5,6 +5,7 @@
     use App\Http\Controllers\Controller;
     use App\Http\Requests\MediaPlayerBackend\GetAnalyzedDataHistoryRequest;
     use App\Http\Requests\MediaPlayerBackend\GetDetectionResponseRequest;
+    use App\Http\Requests\MediaPlayerBackend\GetEcomProductsRequest;
     use App\Http\Requests\MediaPlayerBackend\ImageAnalyzerStoreRequest;
     use App\Http\Requests\MediaPlayerBackend\StoreDetectionResponseRequest;
     use App\Http\Requests\MediaPlayerBackend\UpdateAnalyzeDataRequest;
@@ -89,6 +90,13 @@
          */
         public function getResponseHistory(GetAnalyzedDataHistoryRequest $request){
             $data = $this->imageAnalyzer->getResponseHistory($request->toArray());
+            return response()->json(
+                $data,
+                empty($data) ? 204 : 200
+            );
+        }
+        public function getEcomProducts(GetEcomProductsRequest $request){
+            $data = $this->imageAnalyzer->getEcomProducts($request->toArray());
             return response()->json(
                 $data,
                 empty($data) ? 204 : 200

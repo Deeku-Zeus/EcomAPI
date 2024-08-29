@@ -41,4 +41,11 @@
          * @return array
          */
         public function getResponseHistory(array $request): array;
+
+        /**
+         * @param array $request
+         *
+         * @return array
+         */
+        public function getEcomProducts(array $request): array;
     }

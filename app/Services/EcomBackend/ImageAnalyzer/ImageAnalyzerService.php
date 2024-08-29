@@ -8,6 +8,7 @@
     use App\Services\CommonCrypt;
     use Illuminate\Support\Facades\Crypt;
     use Illuminate\Support\Facades\Log;
+    use Illuminate\Support\Facades\Storage;
     use Throwable;
 
     class ImageAnalyzerService
@@ -350,5 +351,41 @@
                 "message" => "Analyze response fetched successfully",
                 "data"    => ['analyzed_response' => $data->toArray()]
             ];
+        }
+
+        /**
+         * @param $request
+         *
+         * @return array
+         */
+        public function getEcomProducts($request):array
+        {
+            $request = collect($request);
+            $json = Storage::get('Ecom/products_randomized.json');
+            $products = collect(json_decode($json, true));
+
+            // Retrieve request parameters
+//            $color = $request->get('color');
+            $color = null;
+            $categories = $request->get('category', []);
+
+
+            // Filter products based on both color and category
+            if ($color && !empty($categories)) {
+                $filtered = $products->where('color', $color)
+                    ->whereIn('category', $categories);
+            } else if (!empty($categories)) {
+                // If no color filter, only filter by category
+                $filtered = $products->whereIn('category', $categories);
+            } else if ($color) {
+                // If no category filter, only filter by color
+                $filtered = $products->where('color', $color);
+            } else {
+                // No filters applied, return all products
+                $filtered = $products;
+            }
+            $limitedResults = $filtered->take(5);
+
+
         }
     }
