@@ -114,7 +114,7 @@
                     $result = false;
                     $response['result'] = $result;
                     $response['status'] = "failed";
-                    $response['message'] = "Analysis response not found";
+                    $response['message'] = "Analysis request not found";
                 }
                 if ($result){
                     $analyzedData = $this->analyzedResponseDao->analyzedResponse($analyzeRequest[0],$uid);
@@ -134,6 +134,12 @@
                         $responseData->put('analyzed_response',$data);
                         $response['message'] = "Analze response fetched successfully";
                         $response['data'] = $responseData->toArray();
+                    }
+                    else{
+                        $result = false;
+                        $response['result'] = $result;
+                        $response['status'] = "failed";
+                        $response['message'] = "Analysis response not found";
                     }
                 }
             } catch (Throwable $th) {
