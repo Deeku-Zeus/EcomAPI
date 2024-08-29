@@ -365,27 +365,37 @@
             $products = collect(json_decode($json, true));
 
             // Retrieve request parameters
-//            $color = $request->get('color');
-            $color = null;
+            $color = $request->get('color');
             $categories = $request->get('category', []);
 
 
             // Filter products based on both color and category
+            $checkCategory = false;
             if ($color && !empty($categories)) {
                 $filtered = $products->where('color', $color)
                     ->whereIn('category', $categories);
-            } else if (!empty($categories)) {
+                if ($filtered->values()->isEmpty()){
+                    $checkCategory = true;
+                }
+            }
+            if ($checkCategory && !empty($categories)) {
                 // If no color filter, only filter by category
                 $filtered = $products->whereIn('category', $categories);
-            } else if ($color) {
-                // If no category filter, only filter by color
-                $filtered = $products->where('color', $color);
-            } else {
-                // No filters applied, return all products
-                $filtered = $products;
+            }
+            else{
+                return [
+                    "result"  => false,
+                    "status"  => "failed",
+                    "message" => "Category is not provided",
+                    "data"    => []
+                ];
             }
             $limitedResults = $filtered->take(5);
-
-
+            return [
+                "result"  => true,
+                "status"  => "success",
+                "message" => "Category is not provided",
+                "data"    => $limitedResults->values()->all()
+            ];
         }
     }
