@@ -14,11 +14,11 @@ return new class extends Migration
         Schema::connection('ecomBackend')->create('analyze_responses', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('analyze_request_id')->foreign('requestId')->references('id')->on('analyze_requests')->onDelete('cascade');
-            $table->longText('coordinates')->nullable(false);
+            $table->longText('coordinates')->nullable();
             $table->string('confidence')->nullable();
-            $table->longText('tags')->nullable(false);
+            $table->longText('tags')->nullable();
             $table->string('uid')->nullable(false)->unique();
-            $table->string('color');
+            $table->string('color')->nullable();
             $table->timestamps();
         });
     }

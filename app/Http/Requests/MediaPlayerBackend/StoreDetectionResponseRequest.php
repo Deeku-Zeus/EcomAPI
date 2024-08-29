@@ -29,7 +29,7 @@
                 '*.confidence'         => 'nullable',
                 '*.tags'               => 'nullable|string',
                 '*.uid'                => 'required|string',
-                '*.color'              => 'string',
+                '*.color'              => 'nullable|string',
                 '*.request_token'      => 'required|string',
             ];
         }
