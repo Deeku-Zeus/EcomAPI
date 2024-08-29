@@ -44,4 +44,28 @@
             }
             return $query->get();
         }
+        /**
+         * Get response id
+         *
+         * @param array  $uid
+         *
+         * @return mixed
+         */
+        public function getResponseIdByUid(string $uid): mixed
+        {
+            return $this->analyzedResponse->where('uid',$uid)->first()->id ?? null;
+        }
+
+        /**
+         * Get response id
+         *
+         * @param string $id
+         * @param array  $updateData
+         *
+         * @return mixed
+         */
+        public function updateAnalyzedResponse(string $id,array $updateData): mixed
+        {
+            return $this->analyzedResponse->whereId($id)->update($updateData);
+        }
     }

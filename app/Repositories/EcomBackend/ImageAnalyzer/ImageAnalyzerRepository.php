@@ -45,9 +45,21 @@
          * @param array $request
          *
          * @return array
+         *
+         * @throws \Exception
          */
         public function StoreAnalyzedResponse(array $request): array
         {
             return $this->imageAnalyzerService->StoreAnalyzedResponse($request);
+        }
+
+        /**
+         * @param array $request
+         *
+         * @return array
+         */
+        public function UpdateAnalyzeData(array $request): array
+        {
+            return $this->imageAnalyzerService->UpdateAnalyzeData($request);
         }
     }

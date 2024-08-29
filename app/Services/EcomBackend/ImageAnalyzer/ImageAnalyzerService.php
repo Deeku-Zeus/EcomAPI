@@ -19,7 +19,7 @@
         /**
          * @var \App\Dao\EcomBackend\AnalyzeRequestDao
          */
-        protected AnalyzeRequestDao $analyzerRequestDao;
+        protected AnalyzeRequestDao  $analyzerRequestDao;
         protected AnalyzeResponseDao $analyzedResponseDao;
 
         /**
@@ -66,12 +66,12 @@
                 }
                 if ($result) {
                     $upsertData = [
-                        "user_profile_id"     => $profileid,
-                        "image"         => $request->get('image', null),
-                        "videoName"     => $request->get('videoName', null),
-                        "timestamp"     => $request->get('timestamp', null),
-                        "request_token" => $request->get('request_token', null),
-                        "is_analyzed"   => $request->get('is_analyzed', false)
+                        "user_profile_id" => $profileid,
+                        "image"           => $request->get('image', null),
+                        "videoName"       => $request->get('videoName', null),
+                        "timestamp"       => $request->get('timestamp', null),
+                        "request_token"   => $request->get('request_token', null),
+                        "is_analyzed"     => $request->get('is_analyzed', false)
                     ];
                     $this->analyzerRequestDao->storeAnalyzeRequest($upsertData);
                 }
@@ -166,39 +166,117 @@
         /**
          * @param $request
          *
+         * @return array
+         *
          * @throws \Exception
          */
-        public function StoreAnalyzedResponse($request)
+        public function StoreAnalyzedResponse($request): array
         {
-            $result = true;
-            $response = [
-                "result"  => $result,
-                "status"  => "success",
-                "message" => "Request saved successfully",
-                "data"    => []
-            ];
+            if (empty($request)) {
+                return [
+                    "result"  => false,
+                    "status"  => "failed",
+                    "message" => "Request is empty",
+                ];
+            }
             foreach ($request as $item) {
                 $item = collect($item);
                 $requestToken = $item->get('request_token');
+
+                // Validate request token
                 if (!$requestToken) {
-                    $result = false;
-                    $response['result'] = $result;
-                    $response['status'] = "failed";
-                    $response['message'] = "Request token is not provided";
+                    return [
+                        "result"  => false,
+                        "status"  => "failed",
+                        "message" => "Request token is not provided",
+                    ];
                 }
+
                 $analyzeRequestId = $this->analyzerRequestDao->getAnalyzeRequestId($requestToken);
-                if ($analyzeRequestId){
+
+                // Check if analyze request ID is valid
+                if ($analyzeRequestId) {
                     $common = new CommonCrypt(env('COMMON_CRYP_KEY'));
-                    $upsertData = collect();
-                    $upsertData->put('coordinates',$common->encrypt($item->get('coordinates')));
-                    $upsertData->put('confidence',$item->get('confidence'));
-                    $upsertData->put('uid',$item->get('uid'));
-                    $upsertData->put('color',$item->get('color'));
-                    $upsertData->put('tags',$common->encrypt($item->get('tags')));
-                    $upsertData->put('analyze_request_id',$analyzeRequestId);
-                    $this->analyzerRequestDao->upsertAnalyzedResponse($upsertData->toArray());
+
+                    // Prepare data for upsert
+                    $upsertData = [
+                        'coordinates'        => $common->encrypt($item->get('coordinates')),
+                        'confidence'         => $item->get('confidence'),
+                        'uid'                => $item->get('uid'),
+                        'color'              => $item->get('color'),
+                        'tags'               => $common->encrypt($item->get('tags')),
+                        'analyze_request_id' => $analyzeRequestId
+                    ];
+
+                    // Perform the upsert operation
+                    $this->analyzerRequestDao->upsertAnalyzedResponse($upsertData);
                 }
             }
-            return $response;
+
+            return [
+                "result"  => true,
+                "status"  => "success",
+                "message" => "Request saved successfully",
+            ];
+
+        }
+
+        /**
+         * @param $request
+         *
+         * @throws \Exception
+         */
+        public function UpdateAnalyzeData($request): array
+        {
+            try {
+                $request = collect($request);
+                $uid = $request->get('uid');
+                if (!$uid) {
+                    return [
+                        "result"  => false,
+                        "status"  => "failed",
+                        "message" => "UID is not provided",
+                    ];
+                }
+                $responseId = $this->analyzedResponseDao->getResponseIdByUid($uid);
+                if (!$responseId){
+                    return [
+                        "result"  => false,
+                        "status"  => "failed",
+                        "message" => "No response found for the given UID",
+                    ];
+                }
+                $tags = $request->get('tags');
+                $color = $request->get('color');
+                if (empty($tags) && empty($color)) {
+                    return [
+                        "result"  => false,
+                        "status"  => "failed",
+                        "message" => "Nothing to update",
+                    ];
+                }
+                $updateData = collect();
+                $common = new CommonCrypt(env('COMMON_CRYP_KEY'));
+                if (!empty($tags)) {
+                    $updateData->put('tags', $common->encrypt($tags));
+                }
+                if (!empty($color)) {
+                    $updateData->put('color', $color);
+                }
+                $this->analyzedResponseDao->updateAnalyzedResponse($responseId,$updateData->toArray());
+                return [
+                    "result"  => true,
+                    "status"  => "success",
+                    "message" => "Data updated successfully",
+                ];
+            }
+            catch (Throwable $th){
+                Log::error($th);
+                return [
+                    "result"  => false,
+                    "status"  => "failed",
+                    "message" => "Some error has occurred during updating the data",
+                ];
+            }
         }
     }

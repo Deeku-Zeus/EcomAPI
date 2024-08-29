@@ -27,4 +27,11 @@
          * @return array
          */
         public function StoreAnalyzedResponse(array $request): array;
+
+        /**
+         * @param array $request
+         *
+         * @return array
+         */
+        public function UpdateAnalyzeData(array $request): array;
     }
