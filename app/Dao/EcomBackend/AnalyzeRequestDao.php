@@ -94,6 +94,6 @@
          */
         public function getRequestIdByVideoName(string $videoName): mixed
         {
-            return $this->analyzeRequest->where('videoName',$videoName)->first();
+            return $this->analyzeRequest->where('videoName',$videoName)->get();
         }
     }

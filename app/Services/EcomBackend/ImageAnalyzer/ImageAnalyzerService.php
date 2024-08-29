@@ -309,8 +309,11 @@
                     "data"    => []
                 ];
             }
-            $image = pathinfo($analyzeRequest->image, PATHINFO_FILENAME);
-            $analyzeRequestId = $analyzeRequest->id;
+            $imgArray = [];
+            foreach ($analyzeRequest as $item){
+                $imgArray[$item->id] = pathinfo($item->image, PATHINFO_FILENAME);
+            }
+            $analyzeRequestId = $analyzeRequest->pluck('id');
             if (!$analyzeRequestId){
                 return [
                     "result"  => false,
@@ -329,14 +332,15 @@
             }
 
             $common = new CommonCrypt(env('COMMON_CRYP_KEY'));
-            $data = $analyzedData->map(function ($analyzeResponse) use ($common, $image) {
+            $data = $analyzedData->map(function ($analyzeResponse) use ($common, $imgArray) {
+                $reqId = $analyzeResponse->analyze_request_id;
                 return [
                     'coordinates' => json_decode(base64_decode($common->decrypt($analyzeResponse->coordinates))),
                     'confidence'  => $analyzeResponse->confidence,
                     'tags'        => json_decode(base64_decode($common->decrypt($analyzeResponse->tags))),
                     'uid'         => $analyzeResponse->uid,
                     'color'       => $analyzeResponse->color,
-                    'image'       => $image
+                    'image'       => $imgArray[$reqId] ?? ""
                 ];
             });
 
