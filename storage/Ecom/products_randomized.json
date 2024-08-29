@@ -1,0 +1,939 @@
+[
+  {
+    "productName": "Comfortable Sweatshirt 1",
+    "productDescription": "Crafted from soft material.",
+    "price": "20.00",
+    "color": "black",
+    "inStock": true,
+    "category": "top, t-shirt, sweatshirt",
+    "imagePath": "/products/product1.jpg"
+  },
+  {
+    "productName": "Knitted Sweater 2",
+    "productDescription": "Perfect for chilly days.",
+    "price": "30.00",
+    "color": "red",
+    "inStock": false,
+    "category": "sweater",
+    "imagePath": "/products/product2.jpg"
+  },
+  {
+    "productName": "Bomber Jacket 3",
+    "productDescription": "Stylish and functional.",
+    "price": "40.00",
+    "color": "green",
+    "inStock": true,
+    "category": "jacket",
+    "imagePath": "/products/product3.jpg"
+  },
+  {
+    "productName": "Wool Vest 4",
+    "productDescription": "Great for layering.",
+    "price": "50.00",
+    "color": "yellow",
+    "inStock": true,
+    "category": "vest",
+    "imagePath": "/products/product4.jpg"
+  },
+  {
+    "productName": "Slim Fit Pants 5",
+    "productDescription": "Ideal for both casual and formal occasions.",
+    "price": "60.00",
+    "color": "white",
+    "inStock": true,
+    "category": "pants",
+    "imagePath": "/products/product5.jpg"
+  },
+  {
+    "productName": "Beach Shorts 6",
+    "productDescription": "Comfortable and breathable.",
+    "price": "70.00",
+    "color": "grey",
+    "inStock": false,
+    "category": "shorts",
+    "imagePath": "/products/product6.jpg"
+  },
+  {
+    "productName": "Pleated Skirt 7",
+    "productDescription": "Stylish and versatile.",
+    "price": "80.00",
+    "color": "purple",
+    "inStock": false,
+    "category": "skirt",
+    "imagePath": "/products/product7.jpg"
+  },
+  {
+    "productName": "Rain Coat 8",
+    "productDescription": "Offers excellent warmth.",
+    "price": "90.00",
+    "color": "blue",
+    "inStock": true,
+    "category": "coat",
+    "imagePath": "/products/product8.jpg"
+  },
+  {
+    "productName": "Evening Dress 9",
+    "productDescription": "Made with high-quality material.",
+    "price": "100.00",
+    "color": "black",
+    "inStock": false,
+    "category": "dress",
+    "imagePath": "/products/product9.jpg"
+  },
+  {
+    "productName": "Sunglasses 10",
+    "productDescription": "Provides UV protection.",
+    "price": "110.00",
+    "color": "red",
+    "inStock": true,
+    "category": "glasses",
+    "imagePath": "/products/product10.jpg"
+  },
+  {
+    "productName": "Baseball Cap 11",
+    "productDescription": "Comfortable and durable.",
+    "price": "120.00",
+    "color": "green",
+    "inStock": false,
+    "category": "hat",
+    "imagePath": "/products/product11.jpg"
+  },
+  {
+    "productName": "Stylish Headband 12",
+    "productDescription": "A stylish addition to your hair.",
+    "price": "130.00",
+    "color": "yellow",
+    "inStock": true,
+    "category": "headband, head covering, hair accessory",
+    "imagePath": "/products/product12.jpg"
+  },
+  {
+    "productName": "Silk Tie 13",
+    "productDescription": "Made from premium silk.",
+    "price": "140.00",
+    "color": "white",
+    "inStock": true,
+    "category": "tie",
+    "imagePath": "/products/product13.jpg"
+  },
+  {
+    "productName": "Leather Gloves 14",
+    "productDescription": "Made from soft leather.",
+    "price": "150.00",
+    "color": "grey",
+    "inStock": true,
+    "category": "glove",
+    "imagePath": "/products/product14.jpg"
+  },
+  {
+    "productName": "Analog Watch 15",
+    "productDescription": "A stylish and functional accessory.",
+    "price": "160.00",
+    "color": "purple",
+    "inStock": true,
+    "category": "watch",
+    "imagePath": "/products/product15.jpg"
+  },
+  {
+    "productName": "Canvas Belt 16",
+    "productDescription": "A stylish and functional accessory.",
+    "price": "170.00",
+    "color": "blue",
+    "inStock": false,
+    "category": "belt",
+    "imagePath": "/products/product16.jpg"
+  },
+  {
+    "productName": "Knitted Leg Warmers 17",
+    "productDescription": "Keeps your legs warm.",
+    "price": "180.00",
+    "color": "black",
+    "inStock": true,
+    "category": "leg warmer",
+    "imagePath": "/products/product17.jpg"
+  },
+  {
+    "productName": "Fishnet Stockings 18",
+    "productDescription": "Designed for comfort.",
+    "price": "190.00",
+    "color": "red",
+    "inStock": true,
+    "category": "tights, stockings",
+    "imagePath": "/products/product18.jpg"
+  },
+  {
+    "productName": "Crew Socks 19",
+    "productDescription": "Perfect for daily wear.",
+    "price": "200.00",
+    "color": "green",
+    "inStock": true,
+    "category": "sock",
+    "imagePath": "/products/product19.jpg"
+  },
+  {
+    "productName": "Casual Sneakers 20",
+    "productDescription": "Perfect for any occasion.",
+    "price": "210.00",
+    "color": "yellow",
+    "inStock": true,
+    "category": "shoe",
+    "imagePath": "/products/product20.jpg"
+  },
+  {
+    "productName": "Leather Bag 21",
+    "productDescription": "Made from premium materials.",
+    "price": "220.00",
+    "color": "white",
+    "inStock": false,
+    "category": "bag, wallet",
+    "imagePath": "/products/product21.jpg"
+  },
+  {
+    "productName": "Silk Scarf 22",
+    "productDescription": "Keeps you warm and stylish.",
+    "price": "230.00",
+    "color": "grey",
+    "inStock": true,
+    "category": "scarf",
+    "imagePath": "/products/product22.jpg"
+  },
+  {
+    "productName": "Golf Umbrella 23",
+    "productDescription": "Compact and easy to carry.",
+    "price": "240.00",
+    "color": "purple",
+    "inStock": true,
+    "category": "umbrella",
+    "imagePath": "/products/product23.jpg"
+  },
+  {
+    "productName": "Winter Hood 24",
+    "productDescription": "Keeps your head warm.",
+    "price": "250.00",
+    "color": "blue",
+    "inStock": true,
+    "category": "hood",
+    "imagePath": "/products/product24.jpg"
+  },
+  {
+    "productName": "Formal Shirt 25",
+    "productDescription": "Made with breathable fabric.",
+    "price": "260.00",
+    "color": "black",
+    "inStock": true,
+    "category": "shirt, blouse",
+    "imagePath": "/products/product25.jpg"
+  },
+  {
+    "productName": "Casual Top 26",
+    "productDescription": "Crafted from soft material.",
+    "price": "270.00",
+    "color": "red",
+    "inStock": true,
+    "category": "top, t-shirt, sweatshirt",
+    "imagePath": "/products/product26.jpg"
+  },
+  {
+    "productName": "Winter Sweater 27",
+    "productDescription": "Made from premium wool.",
+    "price": "280.00",
+    "color": "green",
+    "inStock": false,
+    "category": "sweater",
+    "imagePath": "/products/product27.jpg"
+  },
+  {
+    "productName": "Leather Jacket 28",
+    "productDescription": "A timeless classic.",
+    "price": "290.00",
+    "color": "yellow",
+    "inStock": true,
+    "category": "jacket",
+    "imagePath": "/products/product28.jpg"
+  },
+  {
+    "productName": "Sleeveless Vest 29",
+    "productDescription": "Lightweight and comfortable.",
+    "price": "300.00",
+    "color": "white",
+    "inStock": true,
+    "category": "vest",
+    "imagePath": "/products/product29.jpg"
+  },
+  {
+    "productName": "Formal Trousers 30",
+    "productDescription": "Made from durable material.",
+    "price": "310.00",
+    "color": "grey",
+    "inStock": true,
+    "category": "pants",
+    "imagePath": "/products/product30.jpg"
+  },
+  {
+    "productName": "Running Shorts 31",
+    "productDescription": "Perfect for summer.",
+    "price": "320.00",
+    "color": "purple",
+    "inStock": true,
+    "category": "shorts",
+    "imagePath": "/products/product31.jpg"
+  },
+  {
+    "productName": "Denim Skirt 32",
+    "productDescription": "Made with high-quality fabric.",
+    "price": "330.00",
+    "color": "blue",
+    "inStock": true,
+    "category": "skirt",
+    "imagePath": "/products/product32.jpg"
+  },
+  {
+    "productName": "Trench Coat 33",
+    "productDescription": "Offers excellent warmth.",
+    "price": "340.00",
+    "color": "black",
+    "inStock": false,
+    "category": "coat",
+    "imagePath": "/products/product33.jpg"
+  },
+  {
+    "productName": "Summer Dress 34",
+    "productDescription": "Elegant and sophisticated.",
+    "price": "350.00",
+    "color": "red",
+    "inStock": true,
+    "category": "dress",
+    "imagePath": "/products/product34.jpg"
+  },
+  {
+    "productName": "Reading Glasses 35",
+    "productDescription": "A stylish accessory.",
+    "price": "360.00",
+    "color": "green",
+    "inStock": true,
+    "category": "glasses",
+    "imagePath": "/products/product35.jpg"
+  },
+  {
+    "productName": "Baseball Cap 36",
+    "productDescription": "Protects from the sun.",
+    "price": "370.00",
+    "color": "yellow",
+    "inStock": true,
+    "category": "hat",
+    "imagePath": "/products/product36.jpg"
+  },
+  {
+    "productName": "Silk Scarf 37",
+    "productDescription": "Made from high-quality materials.",
+    "price": "380.00",
+    "color": "white",
+    "inStock": true,
+    "category": "headband, head covering, hair accessory",
+    "imagePath": "/products/product37.jpg"
+  },
+  {
+    "productName": "Bow Tie 38",
+    "productDescription": "Made from premium silk.",
+    "price": "390.00",
+    "color": "grey",
+    "inStock": false,
+    "category": "tie",
+    "imagePath": "/products/product38.jpg"
+  },
+  {
+    "productName": "Fingerless Gloves 39",
+    "productDescription": "Keeps your hands warm.",
+    "price": "400.00",
+    "color": "purple",
+    "inStock": true,
+    "category": "glove",
+    "imagePath": "/products/product39.jpg"
+  },
+  {
+    "productName": "Analog Watch 40",
+    "productDescription": "A stylish and functional accessory.",
+    "price": "410.00",
+    "color": "blue",
+    "inStock": true,
+    "category": "watch",
+    "imagePath": "/products/product40.jpg"
+  },
+  {
+    "productName": "Canvas Belt 41",
+    "productDescription": "Made from high-quality leather.",
+    "price": "420.00",
+    "color": "black",
+    "inStock": false,
+    "category": "belt",
+    "imagePath": "/products/product41.jpg"
+  },
+  {
+    "productName": "Knitted Leg Warmers 42",
+    "productDescription": "Keeps your legs warm.",
+    "price": "430.00",
+    "color": "red",
+    "inStock": false,
+    "category": "leg warmer",
+    "imagePath": "/products/product42.jpg"
+  },
+  {
+    "productName": "Opaque Tights 43",
+    "productDescription": "Made from high-quality material.",
+    "price": "440.00",
+    "color": "green",
+    "inStock": true,
+    "category": "tights, stockings",
+    "imagePath": "/products/product43.jpg"
+  },
+  {
+    "productName": "Knee-high Socks 44",
+    "productDescription": "Soft and comfortable.",
+    "price": "450.00",
+    "color": "yellow",
+    "inStock": true,
+    "category": "sock",
+    "imagePath": "/products/product44.jpg"
+  },
+  {
+    "productName": "Running Shoes 45",
+    "productDescription": "Designed for comfort.",
+    "price": "460.00",
+    "color": "white",
+    "inStock": true,
+    "category": "shoe",
+    "imagePath": "/products/product45.jpg"
+  },
+  {
+    "productName": "Leather Bag 46",
+    "productDescription": "Perfect for everyday use.",
+    "price": "470.00",
+    "color": "grey",
+    "inStock": true,
+    "category": "bag, wallet",
+    "imagePath": "/products/product46.jpg"
+  },
+  {
+    "productName": "Silk Scarf 47",
+    "productDescription": "A perfect winter accessory.",
+    "price": "480.00",
+    "color": "purple",
+    "inStock": true,
+    "category": "scarf",
+    "imagePath": "/products/product47.jpg"
+  },
+  {
+    "productName": "Compact Umbrella 48",
+    "productDescription": "Made from durable material.",
+    "price": "490.00",
+    "color": "blue",
+    "inStock": true,
+    "category": "umbrella",
+    "imagePath": "/products/product48.jpg"
+  },
+  {
+    "productName": "Fleece Hood 49",
+    "productDescription": "Perfect for winter.",
+    "price": "500.00",
+    "color": "black",
+    "inStock": false,
+    "category": "hood",
+    "imagePath": "/products/product49.jpg"
+  },
+  {
+    "productName": "Formal Shirt 50",
+    "productDescription": "A perfect choice for a casual outing.",
+    "price": "510.00",
+    "color": "red",
+    "inStock": true,
+    "category": "shirt, blouse",
+    "imagePath": "/products/product50.jpg"
+  },
+  {
+    "productName": "Comfortable Sweatshirt 51",
+    "productDescription": "Crafted from soft material.",
+    "price": "520.00",
+    "color": "green",
+    "inStock": false,
+    "category": "top, t-shirt, sweatshirt",
+    "imagePath": "/products/product51.jpg"
+  },
+  {
+    "productName": "Cozy Sweater 52",
+    "productDescription": "Keeps you warm and cozy.",
+    "price": "530.00",
+    "color": "yellow",
+    "inStock": true,
+    "category": "sweater",
+    "imagePath": "/products/product52.jpg"
+  },
+  {
+    "productName": "Bomber Jacket 53",
+    "productDescription": "Offers great protection against the cold.",
+    "price": "540.00",
+    "color": "white",
+    "inStock": true,
+    "category": "jacket",
+    "imagePath": "/products/product53.jpg"
+  },
+  {
+    "productName": "Puffer Vest 54",
+    "productDescription": "Lightweight and comfortable.",
+    "price": "550.00",
+    "color": "grey",
+    "inStock": false,
+    "category": "vest",
+    "imagePath": "/products/product54.jpg"
+  },
+  {
+    "productName": "Casual Pants 55",
+    "productDescription": "Tailored for a perfect fit.",
+    "price": "560.00",
+    "color": "purple",
+    "inStock": true,
+    "category": "pants",
+    "imagePath": "/products/product55.jpg"
+  },
+  {
+    "productName": "Beach Shorts 56",
+    "productDescription": "Comfortable and breathable.",
+    "price": "570.00",
+    "color": "blue",
+    "inStock": true,
+    "category": "shorts",
+    "imagePath": "/products/product56.jpg"
+  },
+  {
+    "productName": "Mini Skirt 57",
+    "productDescription": "A must-have for your wardrobe.",
+    "price": "580.00",
+    "color": "black",
+    "inStock": true,
+    "category": "skirt",
+    "imagePath": "/products/product57.jpg"
+  },
+  {
+    "productName": "Trench Coat 58",
+    "productDescription": "A stylish winter essential.",
+    "price": "590.00",
+    "color": "red",
+    "inStock": true,
+    "category": "coat",
+    "imagePath": "/products/product58.jpg"
+  },
+  {
+    "productName": "Evening Dress 59",
+    "productDescription": "Elegant and sophisticated.",
+    "price": "600.00",
+    "color": "green",
+    "inStock": true,
+    "category": "dress",
+    "imagePath": "/products/product59.jpg"
+  },
+  {
+    "productName": "Aviator Glasses 60",
+    "productDescription": "A stylish accessory.",
+    "price": "610.00",
+    "color": "yellow",
+    "inStock": true,
+    "category": "glasses",
+    "imagePath": "/products/product60.jpg"
+  },
+  {
+    "productName": "Beanie Hat 61",
+    "productDescription": "Adds a stylish touch to any outfit.",
+    "price": "620.00",
+    "color": "white",
+    "inStock": true,
+    "category": "hat",
+    "imagePath": "/products/product61.jpg"
+  },
+  {
+    "productName": "Hair Clip 62",
+    "productDescription": "Made from high-quality materials.",
+    "price": "630.00",
+    "color": "grey",
+    "inStock": false,
+    "category": "headband, head covering, hair accessory",
+    "imagePath": "/products/product62.jpg"
+  },
+  {
+    "productName": "Bow Tie 63",
+    "productDescription": "Made from premium silk.",
+    "price": "640.00",
+    "color": "purple",
+    "inStock": true,
+    "category": "tie",
+    "imagePath": "/products/product63.jpg"
+  },
+  {
+    "productName": "Winter Gloves 64",
+    "productDescription": "Perfect for winter.",
+    "price": "650.00",
+    "color": "blue",
+    "inStock": true,
+    "category": "glove",
+    "imagePath": "/products/product64.jpg"
+  },
+  {
+    "productName": "Smartwatch 65",
+    "productDescription": "Perfect for keeping time.",
+    "price": "660.00",
+    "color": "black",
+    "inStock": true,
+    "category": "watch",
+    "imagePath": "/products/product65.jpg"
+  },
+  {
+    "productName": "Canvas Belt 66",
+    "productDescription": "Made from high-quality leather.",
+    "price": "670.00",
+    "color": "red",
+    "inStock": true,
+    "category": "belt",
+    "imagePath": "/products/product66.jpg"
+  },
+  {
+    "productName": "Sport Leg Warmers 67",
+    "productDescription": "Stylish and comfortable.",
+    "price": "680.00",
+    "color": "green",
+    "inStock": true,
+    "category": "leg warmer",
+    "imagePath": "/products/product67.jpg"
+  },
+  {
+    "productName": "Opaque Tights 68",
+    "productDescription": "Made from high-quality material.",
+    "price": "690.00",
+    "color": "yellow",
+    "inStock": false,
+    "category": "tights, stockings",
+    "imagePath": "/products/product68.jpg"
+  },
+  {
+    "productName": "Crew Socks 69",
+    "productDescription": "Soft and comfortable.",
+    "price": "700.00",
+    "color": "white",
+    "inStock": true,
+    "category": "sock",
+    "imagePath": "/products/product69.jpg"
+  },
+  {
+    "productName": "Casual Sneakers 70",
+    "productDescription": "Perfect for any occasion.",
+    "price": "710.00",
+    "color": "grey",
+    "inStock": true,
+    "category": "shoe",
+    "imagePath": "/products/product70.jpg"
+  },
+  {
+    "productName": "Zip Wallet 71",
+    "productDescription": "Made from premium materials.",
+    "price": "720.00",
+    "color": "purple",
+    "inStock": true,
+    "category": "bag, wallet",
+    "imagePath": "/products/product71.jpg"
+  },
+  {
+    "productName": "Infinity Scarf 72",
+    "productDescription": "Keeps you warm and stylish.",
+    "price": "730.00",
+    "color": "blue",
+    "inStock": true,
+    "category": "scarf",
+    "imagePath": "/products/product72.jpg"
+  },
+  {
+    "productName": "Transparent Umbrella 73",
+    "productDescription": "Compact and easy to carry.",
+    "price": "740.00",
+    "color": "black",
+    "inStock": false,
+    "category": "umbrella",
+    "imagePath": "/products/product73.jpg"
+  },
+  {
+    "productName": "Fleece Hood 74",
+    "productDescription": "Perfect for winter.",
+    "price": "750.00",
+    "color": "red",
+    "inStock": true,
+    "category": "hood",
+    "imagePath": "/products/product74.jpg"
+  },
+  {
+    "productName": "Formal Shirt 75",
+    "productDescription": "Made with breathable fabric.",
+    "price": "760.00",
+    "color": "green",
+    "inStock": true,
+    "category": "shirt, blouse",
+    "imagePath": "/products/product75.jpg"
+  },
+  {
+    "productName": "Casual Top 76",
+    "productDescription": "Ideal for daily wear.",
+    "price": "770.00",
+    "color": "yellow",
+    "inStock": true,
+    "category": "top, t-shirt, sweatshirt",
+    "imagePath": "/products/product76.jpg"
+  },
+  {
+    "productName": "Cozy Sweater 77",
+    "productDescription": "Perfect for chilly days.",
+    "price": "780.00",
+    "color": "white",
+    "inStock": true,
+    "category": "sweater",
+    "imagePath": "/products/product77.jpg"
+  },
+  {
+    "productName": "Denim Jacket 78",
+    "productDescription": "Stylish and functional.",
+    "price": "790.00",
+    "color": "grey",
+    "inStock": true,
+    "category": "jacket",
+    "imagePath": "/products/product78.jpg"
+  },
+  {
+    "productName": "Wool Vest 79",
+    "productDescription": "Great for layering.",
+    "price": "800.00",
+    "color": "purple",
+    "inStock": true,
+    "category": "vest",
+    "imagePath": "/products/product79.jpg"
+  },
+  {
+    "productName": "Formal Trousers 80",
+    "productDescription": "Ideal for both casual and formal occasions.",
+    "price": "810.00",
+    "color": "blue",
+    "inStock": true,
+    "category": "pants",
+    "imagePath": "/products/product80.jpg"
+  },
+  {
+    "productName": "Summer Dress 81",
+    "productDescription": "Perfect for special occasions.",
+    "price": "850.00",
+    "color": "yellow",
+    "inStock": true,
+    "category": "dress",
+    "imagePath": "/products/product81.jpg"
+  },
+  {
+    "productName": "Reading Glasses 82",
+    "productDescription": "Designed for comfort.",
+    "price": "860.00",
+    "color": "white",
+    "inStock": true,
+    "category": "glasses",
+    "imagePath": "/products/product82.jpg"
+  },
+  {
+    "productName": "Casual Sneakers 83",
+    "productDescription": "Perfect for any occasion.",
+    "price": "960.00",
+    "color": "purple",
+    "inStock": true,
+    "category": "shoe",
+    "imagePath": "/products/product83.jpg"
+  },
+  {
+    "productName": "Graphic T-Shirt 84",
+    "productDescription": "Ideal for daily wear.",
+    "price": "20.00",
+    "color": "white",
+    "inStock": false,
+    "category": "top, t-shirt, sweatshirt",
+    "imagePath": "/products/product84.jpg"
+  },
+  {
+    "productName": "Winter Sweater 85",
+    "productDescription": "Perfect for chilly days.",
+    "price": "30.00",
+    "color": "grey",
+    "inStock": true,
+    "category": "sweater",
+    "imagePath": "/products/product85.jpg"
+  },
+  {
+    "productName": "Leather Jacket 86",
+    "productDescription": "A timeless classic.",
+    "price": "40.00",
+    "color": "purple",
+    "inStock": true,
+    "category": "jacket",
+    "imagePath": "/products/product86.jpg"
+  },
+  {
+    "productName": "Sleeveless Vest 87",
+    "productDescription": "Great for layering.",
+    "price": "50.00",
+    "color": "blue",
+    "inStock": true,
+    "category": "vest",
+    "imagePath": "/products/product87.jpg"
+  },
+  {
+    "productName": "Formal Trousers 88",
+    "productDescription": "Made from durable material.",
+    "price": "60.00",
+    "color": "black",
+    "inStock": true,
+    "category": "pants",
+    "imagePath": "/products/product88.jpg"
+  },
+  {
+    "productName": "Cargo Shorts 89",
+    "productDescription": "Perfect for summer.",
+    "price": "70.00",
+    "color": "red",
+    "inStock": true,
+    "category": "shorts",
+    "imagePath": "/products/product89.jpg"
+  },
+  {
+    "productName": "Denim Skirt 90",
+    "productDescription": "Stylish and versatile.",
+    "price": "80.00",
+    "color": "green",
+    "inStock": false,
+    "category": "skirt",
+    "imagePath": "/products/product90.jpg"
+  },
+  {
+    "productName": "Winter Coat 91",
+    "productDescription": "A stylish winter essential.",
+    "price": "90.00",
+    "color": "yellow",
+    "inStock": true,
+    "category": "coat",
+    "imagePath": "/products/product91.jpg"
+  },
+  {
+    "productName": "Cocktail Dress 92",
+    "productDescription": "Elegant and sophisticated.",
+    "price": "100.00",
+    "color": "white",
+    "inStock": true,
+    "category": "dress",
+    "imagePath": "/products/product92.jpg"
+  },
+  {
+    "productName": "Sunglasses 93",
+    "productDescription": "Provides UV protection.",
+    "price": "110.00",
+    "color": "grey",
+    "inStock": true,
+    "category": "glasses",
+    "imagePath": "/products/product94.jpg"
+  },
+  {
+    "productName": "Baseball Cap 95",
+    "productDescription": "Adds a stylish touch to any outfit.",
+    "price": "120.00",
+    "color": "purple",
+    "inStock": true,
+    "category": "hat",
+    "imagePath": "/products/product95.jpg"
+  },
+  {
+    "productName": "Casual Sneakers 96",
+    "productDescription": "Designed for comfort.",
+    "price": "210.00",
+    "color": "blue",
+    "inStock": true,
+    "category": "shoe",
+    "imagePath": "/products/product96.jpg"
+  },
+  {
+    "productName": "Casual Blouse 97",
+    "productDescription": "Designed for a comfortable fit.",
+    "price": "260.00",
+    "color": "white",
+    "inStock": true,
+    "category": "shirt, blouse",
+    "imagePath": "/products/product97.jpg"
+  },
+  {
+    "productName": "Casual Top 98",
+    "productDescription": "Crafted from soft material.",
+    "price": "270.00",
+    "color": "grey",
+    "inStock": true,
+    "category": "top, t-shirt, sweatshirt",
+    "imagePath": "/products/product98.jpg"
+  },
+  {
+    "productName": "Casual Pants 99",
+    "productDescription": "Made from durable material.",
+    "price": "310.00",
+    "color": "red",
+    "inStock": true,
+    "category": "pants",
+    "imagePath": "/products/product99.jpg"
+  },
+  {
+    "productName": "Running Shorts 100",
+    "productDescription": "Designed for an active lifestyle.",
+    "price": "320.00",
+    "color": "green",
+    "inStock": true,
+    "category": "shorts",
+    "imagePath": "/products/product100.jpg"
+  },
+  {
+    "productName": "Pleated Skirt 101",
+    "productDescription": "Stylish and versatile.",
+    "price": "330.00",
+    "color": "yellow",
+    "inStock": true,
+    "category": "skirt",
+    "imagePath": "/products/product101.jpg"
+  },
+  {
+    "productName": "Summer Dress 102",
+    "productDescription": "Perfect for special occasions.",
+    "price": "350.00",
+    "color": "grey",
+    "inStock": false,
+    "category": "dress",
+    "imagePath": "/products/product102.jpg"
+  },
+  {
+    "productName": "Sunglasses 103",
+    "productDescription": "A stylish accessory.",
+    "price": "360.00",
+    "color": "purple",
+    "inStock": true,
+    "category": "glasses",
+    "imagePath": "/products/product103.jpg"
+  },
+  {
+    "productName": "Formal Belt 104",
+    "productDescription": "A stylish and functional accessory.",
+    "price": "420.00",
+    "color": "white",
+    "inStock": true,
+    "category": "belt",
+    "imagePath": "/products/product104.jpg"
+  },
+  {
+    "productName": "Running Shoes 105",
+    "productDescription": "Designed for comfort.",
+    "price": "460.00",
+    "color": "black",
+    "inStock": true,
+    "category": "shoe",
+    "imagePath": "/products/product105.jpg"
+  }
+  
+]
