@@ -25,7 +25,8 @@
         public function rules(): array
         {
             return [
-                'request_token' => 'required|string'
+                'request_token' => 'required|string',
+                'uid'           => 'nullable|array'
             ];
         }
 
@@ -37,8 +38,9 @@
         public function messages(): array
         {
             return [
-                'request_token.required' => 'The Request Tpken is required.',
+                'request_token.required' => 'The Request Token is required.',
                 'request_token.string'   => 'The request token must be a string.',
+                'uid.array'              => 'The UID must be an array.',
             ];
         }
 
