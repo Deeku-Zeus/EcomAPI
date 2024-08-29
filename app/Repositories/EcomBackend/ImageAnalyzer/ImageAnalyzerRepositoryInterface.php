@@ -34,4 +34,11 @@
          * @return array
          */
         public function UpdateAnalyzeData(array $request): array;
+
+        /**
+         * @param array $request
+         *
+         * @return array
+         */
+        public function getResponseHistory(array $request): array;
     }

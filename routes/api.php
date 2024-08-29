@@ -11,4 +11,5 @@ Route::middleware('auth.jwt')->group(function() {
     Route::post('/v1/ecomBackend/get/analyzedResponse',[ImageAnalyzerController::class,'analyzedResponse']);
     Route::post('/v1/ecomBackend/put/storeAnalyzedResponse',[ImageAnalyzerController::class,'StoreAnalyzedResponse']);
     Route::post('/v1/ecomBackend/put/updateAnalyzeData',[ImageAnalyzerController::class,'UpdateAnalyzeData']);
+    Route::post('/v1/ecomBackend/get/getResponseHistory',[ImageAnalyzerController::class,'getResponseHistory']);
 });

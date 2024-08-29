@@ -84,4 +84,16 @@
                 $upsertData
             );
         }
+
+        /**
+         * Get response id
+         *
+         * @param string $videoName
+         *
+         * @return mixed
+         */
+        public function getRequestIdByVideoName(string $videoName): mixed
+        {
+            return $this->analyzeRequest->where('videoName',$videoName)->first();
+        }
     }

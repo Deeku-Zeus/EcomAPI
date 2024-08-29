@@ -224,6 +224,8 @@
         /**
          * @param $request
          *
+         * @return array
+         *
          * @throws \Exception
          */
         public function UpdateAnalyzeData($request): array
@@ -278,5 +280,71 @@
                     "message" => "Some error has occurred during updating the data",
                 ];
             }
+        }
+
+        /**
+         * @param $request
+         *
+         * @return array
+         * @throws \Exception
+         */
+        public function getResponseHistory($request):array
+        {
+            $request = collect($request);
+            $videoName = $request->get('videoName');
+            if (!$videoName){
+                return [
+                    "result"  => false,
+                    "status"  => "failed",
+                    "message" => "Video Name is not provided",
+                ];
+            }
+            $page = $request->get('page',1);
+            $analyzeRequest = $this->analyzerRequestDao->getRequestIdByVideoName($videoName);
+            if (!$analyzeRequest) {
+                return [
+                    "result"  => false,
+                    "status"  => "failed",
+                    "message" => "Analysis request not found",
+                    "data"    => []
+                ];
+            }
+            $image = pathinfo($analyzeRequest->image, PATHINFO_FILENAME);
+            $analyzeRequestId = $analyzeRequest->id;
+            if (!$analyzeRequestId){
+                return [
+                    "result"  => false,
+                    "status"  => "failed",
+                    "message" => "No histories found for the video name",
+                ];
+            }
+            $analyzedData = $this->analyzedResponseDao->getResponseHistories($analyzeRequestId,$page);
+            if ($analyzedData->isEmpty()) {
+                return [
+                    "result"  => false,
+                    "status"  => "failed",
+                    "message" => "Analysis response not found",
+                    "data"    => []
+                ];
+            }
+
+            $common = new CommonCrypt(env('COMMON_CRYP_KEY'));
+            $data = $analyzedData->map(function ($analyzeResponse) use ($common, $image) {
+                return [
+                    'coordinates' => json_decode(base64_decode($common->decrypt($analyzeResponse->coordinates))),
+                    'confidence'  => $analyzeResponse->confidence,
+                    'tags'        => json_decode(base64_decode($common->decrypt($analyzeResponse->tags))),
+                    'uid'         => $analyzeResponse->uid,
+                    'color'       => $analyzeResponse->color,
+                    'image'       => $image
+                ];
+            });
+
+            return [
+                "result"  => true,
+                "status"  => "success",
+                "message" => "Analyze response fetched successfully",
+                "data"    => ['analyzed_response' => $data->toArray()]
+            ];
         }
     }

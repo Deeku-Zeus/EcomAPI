@@ -62,4 +62,14 @@
         {
             return $this->imageAnalyzerService->UpdateAnalyzeData($request);
         }
+
+        /**
+         * @param array $request
+         *
+         * @return array
+         */
+        public function getResponseHistory(array $request): array
+        {
+            return $this->imageAnalyzerService->getResponseHistory($request);
+        }
     }

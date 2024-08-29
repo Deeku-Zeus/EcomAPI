@@ -68,4 +68,22 @@
         {
             return $this->analyzedResponse->whereId($id)->update($updateData);
         }
+
+        /**
+         * @param int $requestId
+         * @param int $page
+         *
+         * @return mixed
+         */
+        public function getResponseHistories(int $requestId,$page=1): mixed
+        {
+            $perPage = 10; // Number of records per page
+
+            $offset = ($page - 1) * $perPage;
+
+            return $this->analyzedResponse->where('analyze_request_id', $requestId)
+                ->offset($offset)
+                ->limit($perPage)
+                ->get();
+        }
     }
