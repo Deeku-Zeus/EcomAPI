@@ -22,6 +22,8 @@ php artisan migrate --force --path=database/migrations/EcomApi
 
 php artisan db:seed
 
+php artisan storage:link
+
 # Start the PHP built-in server in the foreground
 php -S 0.0.0.0:80 -t public
 
