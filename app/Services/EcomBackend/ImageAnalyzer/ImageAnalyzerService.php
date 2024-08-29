@@ -201,9 +201,9 @@
                     // Prepare data for upsert
                     $upsertData = [
                         'coordinates'        => $common->encrypt($item->get('coordinates')),
-                        'confidence'         => $item->get('confidence'),
+                        'confidence'         => $item->get('confidence',""),
                         'uid'                => $item->get('uid'),
-                        'color'              => $item->get('color'),
+                        'color'              => $item->get('color',""),
                         'tags'               => $common->encrypt($item->get('tags')),
                         'analyze_request_id' => $analyzeRequestId
                     ];

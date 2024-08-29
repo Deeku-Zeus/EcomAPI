@@ -25,11 +25,11 @@
         public function rules(): array
         {
             return [
-                '*.coordinates'        => 'required|string',
+                '*.coordinates'        => 'string',
                 '*.confidence'         => 'nullable',
                 '*.tags'               => 'nullable|string',
                 '*.uid'                => 'required|string',
-                '*.color'              => 'required|string',
+                '*.color'              => 'string',
                 '*.request_token'      => 'required|string',
             ];
         }
@@ -42,11 +42,9 @@
         public function messages(): array
         {
             return [
-                '*.coordinates.required'        => 'The Coordinates field is required.',
                 '*.tags.string'                 => 'Please enter valid tags.',
                 '*.uid.required'                => 'UID required.',
                 '*.uid.string'                  => 'Please enter valid UID.',
-                '*.color.required'              => 'Color is required.',
                 '*.color.string'                => 'Color is invalid.',
                 '*.request_token.required'      => 'Request Token is required.',
                 '*.request_token.string'        => 'Invalid Request Token.',

@@ -5,7 +5,7 @@
     "price": "20.00",
     "color": "black",
     "inStock": true,
-    "category": "top, t-shirt, sweatshirt",
+    "category": "sweatshirt",
     "imagePath": "/products/product1.jpg"
   },
   {
@@ -104,7 +104,7 @@
     "price": "130.00",
     "color": "yellow",
     "inStock": true,
-    "category": "headband, head covering, hair accessory",
+    "category": "headband",
     "imagePath": "/products/product12.jpg"
   },
   {
@@ -158,7 +158,7 @@
     "price": "190.00",
     "color": "red",
     "inStock": true,
-    "category": "tights, stockings",
+    "category": "stockings",
     "imagePath": "/products/product18.jpg"
   },
   {
@@ -185,7 +185,7 @@
     "price": "220.00",
     "color": "white",
     "inStock": false,
-    "category": "bag, wallet",
+    "category": "bag",
     "imagePath": "/products/product21.jpg"
   },
   {
@@ -221,7 +221,7 @@
     "price": "260.00",
     "color": "black",
     "inStock": true,
-    "category": "shirt, blouse",
+    "category": "shirt",
     "imagePath": "/products/product25.jpg"
   },
   {
@@ -230,7 +230,7 @@
     "price": "270.00",
     "color": "red",
     "inStock": true,
-    "category": "top, t-shirt, sweatshirt",
+    "category": "top",
     "imagePath": "/products/product26.jpg"
   },
   {
@@ -329,7 +329,7 @@
     "price": "380.00",
     "color": "white",
     "inStock": true,
-    "category": "headband, head covering, hair accessory",
+    "category": "head covering",
     "imagePath": "/products/product37.jpg"
   },
   {
@@ -383,7 +383,7 @@
     "price": "440.00",
     "color": "green",
     "inStock": true,
-    "category": "tights, stockings",
+    "category": "tights",
     "imagePath": "/products/product43.jpg"
   },
   {
@@ -410,7 +410,7 @@
     "price": "470.00",
     "color": "grey",
     "inStock": true,
-    "category": "bag, wallet",
+    "category": "bag",
     "imagePath": "/products/product46.jpg"
   },
   {
@@ -446,7 +446,7 @@
     "price": "510.00",
     "color": "red",
     "inStock": true,
-    "category": "shirt, blouse",
+    "category": "shirt",
     "imagePath": "/products/product50.jpg"
   },
   {
@@ -455,7 +455,7 @@
     "price": "520.00",
     "color": "green",
     "inStock": false,
-    "category": "top, t-shirt, sweatshirt",
+    "category": "sweatshirt",
     "imagePath": "/products/product51.jpg"
   },
   {
@@ -554,7 +554,7 @@
     "price": "630.00",
     "color": "grey",
     "inStock": false,
-    "category": "headband, head covering, hair accessory",
+    "category": "headband",
     "imagePath": "/products/product62.jpg"
   },
   {
@@ -608,7 +608,7 @@
     "price": "690.00",
     "color": "yellow",
     "inStock": false,
-    "category": "tights, stockings",
+    "category": "tights",
     "imagePath": "/products/product68.jpg"
   },
   {
@@ -635,7 +635,7 @@
     "price": "720.00",
     "color": "purple",
     "inStock": true,
-    "category": "bag, wallet",
+    "category": "wallet",
     "imagePath": "/products/product71.jpg"
   },
   {
@@ -671,7 +671,7 @@
     "price": "760.00",
     "color": "green",
     "inStock": true,
-    "category": "shirt, blouse",
+    "category": "shirt",
     "imagePath": "/products/product75.jpg"
   },
   {
@@ -680,7 +680,7 @@
     "price": "770.00",
     "color": "yellow",
     "inStock": true,
-    "category": "top, t-shirt, sweatshirt",
+    "category": "top",
     "imagePath": "/products/product76.jpg"
   },
   {
@@ -752,7 +752,7 @@
     "price": "20.00",
     "color": "white",
     "inStock": false,
-    "category": "top, t-shirt, sweatshirt",
+    "category": "t-shirt",
     "imagePath": "/products/product84.jpg"
   },
   {
@@ -860,7 +860,7 @@
     "price": "260.00",
     "color": "white",
     "inStock": true,
-    "category": "shirt, blouse",
+    "category": "blouse",
     "imagePath": "/products/product97.jpg"
   },
   {
@@ -869,7 +869,7 @@
     "price": "270.00",
     "color": "grey",
     "inStock": true,
-    "category": "top, t-shirt, sweatshirt",
+    "category": "top",
     "imagePath": "/products/product98.jpg"
   },
   {
@@ -935,5 +935,5 @@
     "category": "shoe",
     "imagePath": "/products/product105.jpg"
   }
-  
+
 ]
