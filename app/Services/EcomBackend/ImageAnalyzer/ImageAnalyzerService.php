@@ -92,64 +92,75 @@
          */
         public function analyzedResponse($request): array
         {
-            $result = true;
-            $response = [
-                "result"  => $result,
-                "status"  => "success",
-                "message" => "No response found",
-                "data"    => []
-            ];
-            $request = collect($request);
-            $requestToken = $request->get('request_token');
-            $uid = $request->get('uid',[]);
-            if (!$requestToken) {
-                $result = false;
-                $response['result'] = $result;
-                $response['status'] = "failed";
-                $response['message'] = "Request token is not provided";
-            }
             try {
+                $request = collect($request);
+                $requestToken = $request->get('request_token');
+                $uid = $request->get('uid', []);
+
+                // Check if the request token is provided
+                if (!$requestToken) {
+                    return [
+                        "result"  => false,
+                        "status"  => "failed",
+                        "message" => "Request token is not provided",
+                        "data"    => []
+                    ];
+                }
+
                 $analyzeRequest = $this->analyzerRequestDao->getRequestIds($requestToken);
-                if (!(isset($analyzeRequest[0]) && !empty($analyzeRequest[0]))){
-                    $result = false;
-                    $response['result'] = $result;
-                    $response['status'] = "failed";
-                    $response['message'] = "Analysis request not found";
+
+                if (!$analyzeRequest) {
+                    return [
+                        "result"  => false,
+                        "status"  => "failed",
+                        "message" => "Analysis request not found",
+                        "data"    => []
+                    ];
                 }
-                if ($result){
-                    $analyzedData = $this->analyzedResponseDao->analyzedResponse($analyzeRequest[0],$uid);
-                    if ($analyzedData->isNotEmpty()){
-                        $common = new CommonCrypt(env('COMMON_CRYP_KEY'));
-                        $responseData = collect();
-                        $data = [];
-                        foreach ($analyzedData as $analyzeResponse){
-                            $analyzedObj = collect();
-                            $analyzedObj->put('coordinates',json_decode(base64_decode($common->decrypt($analyzeResponse->coordinates))));
-                            $analyzedObj->put('confidence',$analyzeResponse->confidence);
-                            $analyzedObj->put('tags',json_decode(base64_decode($common->decrypt($analyzeResponse->tags))));
-                            $analyzedObj->put('uid',$analyzeResponse->uid);
-                            $analyzedObj->put('color',$analyzeResponse->color);
-                            $data[] = $analyzedObj;
-                        }
-                        $responseData->put('analyzed_response',$data);
-                        $response['message'] = "Analze response fetched successfully";
-                        $response['data'] = $responseData->toArray();
-                    }
-                    else{
-                        $result = false;
-                        $response['result'] = $result;
-                        $response['status'] = "failed";
-                        $response['message'] = "Analysis response not found";
-                    }
+
+                $image = pathinfo($analyzeRequest->image, PATHINFO_FILENAME);
+                $analyzedData = $analyzeRequest->analyzeResponse()
+                    ->when(!empty($uid), function ($query) use ($uid) {
+                        return $query->whereIn('uid', $uid);
+                    })
+                    ->get();
+
+                if ($analyzedData->isEmpty()) {
+                    return [
+                        "result"  => false,
+                        "status"  => "failed",
+                        "message" => "Analysis response not found",
+                        "data"    => []
+                    ];
                 }
+
+                $common = new CommonCrypt(env('COMMON_CRYP_KEY'));
+                $data = $analyzedData->map(function ($analyzeResponse) use ($common, $image) {
+                    return [
+                        'coordinates' => json_decode(base64_decode($common->decrypt($analyzeResponse->coordinates))),
+                        'confidence'  => $analyzeResponse->confidence,
+                        'tags'        => json_decode(base64_decode($common->decrypt($analyzeResponse->tags))),
+                        'uid'         => $analyzeResponse->uid,
+                        'color'       => $analyzeResponse->color,
+                        'image'       => $image
+                    ];
+                });
+
+                return [
+                    "result"  => true,
+                    "status"  => "success",
+                    "message" => "Analyze response fetched successfully",
+                    "data"    => ['analyzed_response' => $data->toArray()]
+                ];
             } catch (Throwable $th) {
                 Log::error($th);
-                $result = false;
-                $response['result'] = $result;
-                $response['status'] = "failed";
-                $response['message'] = "Some error has occurred during fetching the data";
+                return [
+                    "result"  => false,
+                    "status"  => "failed",
+                    "message" => "Some error has occurred during fetching the data",
+                    "data"    => []
+                ];
             }
-            return $response;
         }
 
         /**

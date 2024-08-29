@@ -16,7 +16,7 @@
                 $table->unsignedBigInteger('user_profile_id')->foreign('user_profile_id')->references('id')->on('user_profiles')->onDelete('cascade');
                 $table->string('image')->nullable(false);
                 $table->string('timestamp');
-                $table->string('videoName');
+                $table->string('videoName',60)->index('videoName');
                 $table->boolean('is_analyzed')->default(false)->nullable(false)->index('is_analyzed');
                 $table->dateTime('responseTime')->nullable();
                 $table->string('request_token')->unique();

@@ -55,7 +55,7 @@
          */
         public function getRequestIds(string $requestToken): mixed
         {
-            return $this->analyzeRequest->where('request_token',$requestToken)->pluck('id');
+            return $this->analyzeRequest->select(['id','image'])->where('request_token',$requestToken)->first();
         }
 
         /**
