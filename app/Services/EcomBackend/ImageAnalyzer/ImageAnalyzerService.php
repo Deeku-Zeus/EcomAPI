@@ -368,9 +368,9 @@
             $color = $request->get('color');
             $categories = $request->get('category', []);
 
-
             // Filter products based on both color and category
             $checkCategory = false;
+            $result = true;
             if ($color && !empty($categories)) {
                 $filtered = $products->where('color', $color)
                     ->whereIn('category', $categories);
@@ -381,14 +381,14 @@
             if ($checkCategory && !empty($categories)) {
                 // If no color filter, only filter by category
                 $filtered = $products->whereIn('category', $categories);
-            }
-            else{
-                return [
-                    "result"  => false,
-                    "status"  => "failed",
-                    "message" => "Category is not provided",
-                    "data"    => []
-                ];
+                if ($filtered->values()->isEmpty()){
+                    return [
+                        "result"  => false,
+                        "status"  => "failed",
+                        "message" => "No matching products are found",
+                        "data"    => []
+                    ];
+                }
             }
             $limitedResults = $filtered->take(5);
             return [
