@@ -202,9 +202,9 @@
                     // Prepare data for upsert
                     $upsertData = [
                         'coordinates'        => $common->encrypt($item->get('coordinates')),
-                        'confidence'         => $item->get('confidence',""),
+                        'confidence'         => $item->get('confidence', ""),
                         'uid'                => $item->get('uid'),
-                        'color'              => $item->get('color',""),
+                        'color'              => $item->get('color', ""),
                         'tags'               => $common->encrypt($item->get('tags')),
                         'analyze_request_id' => $analyzeRequestId
                     ];
@@ -242,7 +242,7 @@
                     ];
                 }
                 $responseId = $this->analyzedResponseDao->getResponseIdByUid($uid);
-                if (!$responseId){
+                if (!$responseId) {
                     return [
                         "result"  => false,
                         "status"  => "failed",
@@ -266,14 +266,13 @@
                 if (!empty($color)) {
                     $updateData->put('color', $color);
                 }
-                $this->analyzedResponseDao->updateAnalyzedResponse($responseId,$updateData->toArray());
+                $this->analyzedResponseDao->updateAnalyzedResponse($responseId, $updateData->toArray());
                 return [
                     "result"  => true,
                     "status"  => "success",
                     "message" => "Data updated successfully",
                 ];
-            }
-            catch (Throwable $th){
+            } catch (Throwable $th) {
                 Log::error($th);
                 return [
                     "result"  => false,
@@ -289,19 +288,19 @@
          * @return array
          * @throws \Exception
          */
-        public function getResponseHistory($request):array
+        public function getResponseHistory($request): array
         {
             $request = collect($request);
             $videoName = $request->get('videoName');
-            if (!$videoName){
+            if (!$videoName) {
                 return [
                     "result"  => false,
                     "status"  => "failed",
                     "message" => "Video Name is not provided",
                 ];
             }
-            $page = $request->get('page',1);
-            $limit = $request->get('limit',10);
+            $page = $request->get('page', 1);
+            $limit = $request->get('limit', 10);
             $analyzeRequest = $this->analyzerRequestDao->getRequestIdByVideoName($videoName);
             if (!$analyzeRequest) {
                 return [
@@ -311,19 +310,15 @@
                     "data"    => []
                 ];
             }
-            $imgArray = [];
-            foreach ($analyzeRequest as $item){
-                $imgArray[$item->id] = pathinfo($item->image, PATHINFO_FILENAME);
-            }
             $analyzeRequestId = $analyzeRequest->pluck('id');
-            if (!$analyzeRequestId){
+            if (!$analyzeRequestId) {
                 return [
                     "result"  => false,
                     "status"  => "failed",
                     "message" => "No histories found for the video name",
                 ];
             }
-            $analyzedData = $this->analyzedResponseDao->getResponseHistories($analyzeRequestId,$page,$limit);
+            $analyzedData = $this->analyzedResponseDao->getResponseHistories($analyzeRequestId, $page, $limit);
             if ($analyzedData->isEmpty()) {
                 return [
                     "result"  => false,
@@ -334,15 +329,16 @@
             }
 
             $common = new CommonCrypt(env('COMMON_CRYP_KEY'));
-            $data = $analyzedData->map(function ($analyzeResponse) use ($common, $imgArray) {
-                $reqId = $analyzeResponse->analyze_request_id;
+            $data = $analyzedData->map(function ($analyzeResponse) use ($common) {
                 return [
                     'coordinates' => json_decode(base64_decode($common->decrypt($analyzeResponse->coordinates))),
                     'confidence'  => $analyzeResponse->confidence,
                     'tags'        => json_decode(base64_decode($common->decrypt($analyzeResponse->tags))),
                     'uid'         => $analyzeResponse->uid,
                     'color'       => $analyzeResponse->color,
-                    'image'       => $imgArray[$reqId] ?? ""
+                    'image'       => pathinfo($analyzeResponse->analyzeRequest->image,PATHINFO_FILENAME) ?? "",
+                    'timestamp'   => $analyzeResponse->analyzeRequest->timestamp ?? "",
+                    'request_token'   => $analyzeResponse->analyzeRequest->request_token ?? "",
                 ];
             });
 
@@ -359,7 +355,7 @@
          *
          * @return array
          */
-        public function getEcomProducts($request):array
+        public function getEcomProducts($request): array
         {
             $request = collect($request);
             $json = Storage::get('Ecom/products_randomized.json');
@@ -375,14 +371,14 @@
             if ($color && !empty($categories)) {
                 $filtered = $products->where('color', $color)
                     ->whereIn('category', $categories);
-                if ($filtered->values()->isEmpty()){
+                if ($filtered->values()->isEmpty()) {
                     $checkCategory = true;
                 }
             }
             if ($checkCategory && !empty($categories)) {
                 // If no color filter, only filter by category
                 $filtered = $products->whereIn('category', $categories);
-                if ($filtered->values()->isEmpty()){
+                if ($filtered->values()->isEmpty()) {
                     return [
                         "result"  => false,
                         "status"  => "failed",
