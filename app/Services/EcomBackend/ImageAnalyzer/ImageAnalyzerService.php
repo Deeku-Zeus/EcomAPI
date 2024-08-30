@@ -301,6 +301,7 @@
                 ];
             }
             $page = $request->get('page',1);
+            $limit = $request->get('limit',10);
             $analyzeRequest = $this->analyzerRequestDao->getRequestIdByVideoName($videoName);
             if (!$analyzeRequest) {
                 return [
@@ -322,7 +323,7 @@
                     "message" => "No histories found for the video name",
                 ];
             }
-            $analyzedData = $this->analyzedResponseDao->getResponseHistories($analyzeRequestId,$page);
+            $analyzedData = $this->analyzedResponseDao->getResponseHistories($analyzeRequestId,$page,$limit);
             if ($analyzedData->isEmpty()) {
                 return [
                     "result"  => false,

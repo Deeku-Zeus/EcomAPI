@@ -72,18 +72,17 @@
         /**
          * @param mixed $requestId
          * @param int   $page
+         * @param int   $limit
          *
          * @return mixed
          */
-        public function getResponseHistories(mixed $requestId,$page=1): mixed
+        public function getResponseHistories(mixed $requestId,$page=1,$limit=10): mixed
         {
-            $perPage = 10; // Number of records per page
-
-            $offset = ($page - 1) * $perPage;
+            $offset = ($page - 1) * $limit;
 
             return $this->analyzedResponse->whereIn('analyze_request_id', $requestId)
                 ->offset($offset)
-                ->limit($perPage)
+                ->limit($limit)
                 ->get();
         }
     }
