@@ -96,4 +96,14 @@
         {
             return $this->analyzeRequest->where('videoName',$videoName)->get();
         }
+
+        /**
+         * Get response id
+         *
+         * @return \Illuminate\Database\Eloquent\Collection
+         */
+        public function getUserRequests(): \Illuminate\Database\Eloquent\Collection
+        {
+            return $this->analyzeRequest->all();
+        }
     }

@@ -2,7 +2,7 @@
 
     namespace App\Repositories\EcomBackend\ImageAnalyzer;
 
-    use App\Services\EcomBackend\ImageAnalyzer\ImageAnalyzerService;
+    use App\Services\EcomBackend\ImageAnalyzer\{ImageAnalyzerService,ImageResponseService};
 
     class ImageAnalyzerRepository implements ImageAnalyzerRepositoryInterface
     {
@@ -10,15 +10,20 @@
          * @var ImageAnalyzerService
          */
         protected ImageAnalyzerService $imageAnalyzerService;
+        protected ImageResponseService $imageResponseService;
 
         /**
          * ImageAnalyzerRequestExecRepository constructor.
          *
          * @param ImageAnalyzerService $analyzerService
          */
-        public function __construct(ImageAnalyzerService $analyzerService)
+        public function __construct(
+            ImageAnalyzerService $analyzerService,
+            ImageResponseService $responseService
+        )
         {
             $this->imageAnalyzerService = $analyzerService;
+            $this->imageResponseService = $responseService;
         }
 
         /**
@@ -76,5 +81,9 @@
         public function getEcomProducts(array $request): array
         {
             return $this->imageAnalyzerService->getEcomProducts($request);
+        }
+        public function getUserRequests(array $request): array
+        {
+            return $this->imageResponseService->getUserRequests($request);
         }
     }

@@ -10,8 +10,8 @@
     use App\Http\Requests\MediaPlayerBackend\StoreDetectionResponseRequest;
     use App\Http\Requests\MediaPlayerBackend\UpdateAnalyzeDataRequest;
     use App\Repositories\EcomBackend\ImageAnalyzer\ImageAnalyzerRepositoryInterface;
-    use http\Env\Request;
     use Illuminate\Http\JsonResponse;
+    use Illuminate\Http\Request;
 
     class ImageAnalyzerController extends Controller
     {
@@ -97,6 +97,13 @@
         }
         public function getEcomProducts(GetEcomProductsRequest $request){
             $data = $this->imageAnalyzer->getEcomProducts($request->toArray());
+            return response()->json(
+                $data,
+                empty($data) ? 204 : 200
+            );
+        }
+        public function getUserRequests(Request $request){
+            $data = $this->imageAnalyzer->getUserRequests($request->toArray());
             return response()->json(
                 $data,
                 empty($data) ? 204 : 200

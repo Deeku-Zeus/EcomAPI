@@ -48,4 +48,11 @@
          * @return array
          */
         public function getEcomProducts(array $request): array;
+
+        /**
+         * @param array $request
+         *
+         * @return array
+         */
+        public function getUserRequests(array $request): array;
     }
